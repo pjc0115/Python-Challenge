@@ -10,6 +10,7 @@ poll_csv = os.path.join('Resources', 'election_data.csv')  # Use os.path.join fu
 
 # Use lists to store data for candidates, percentage fo votes, number of votes, and popular votes
 
+
 candidates = []
 vote_percentage = []
 num_votes = []
@@ -17,8 +18,24 @@ popular_votes = []
 
 # Initialize variables
  
-count = 0
+#count = 0
+#Tcount = 0
 
+# Opern csv file with a comma delimiter 
+with open(poll_csv) as csvfile:
+    csv_reader = csv.reader(csvfile, delimiter =",")
+    csv_header = next(csv_reader)
+    
+    #Set for loop
+    for row in csv_reader:
+        #count =+ count   #count the number of votes
+        
+        num_votes.append(row[0])  
+        tot_count = len(num_votes)
+       
+        
+        candidates.append(row[2])
+    
 
       
   
@@ -26,23 +43,20 @@ count = 0
     
     print("-------------------------")
     print("-------------------------")
-    print("FINANCIAL ANALYSIS")
+    print("ELECTION ANALYSIS")
     print("-------------------------")
-    print("TOTAL MONTHS: " + str(tot_month)) 
-    print("TOTAL PROFIT: " + "$" + str(tot_profit))
-    print("CHANGE-AVERAGE: " + "$" + str(int(avg_change_profits)))
-    
+    print("TOTAL VOTES: " + str(tot_count)) 
+   
     
     # Output to .txt file
     
-with open('Fin_Analysis.txt', "w") as textfile:  #Write to Fin_Analysis.txt
+with open('Election_Analysis.txt', "w") as textfile:  #Write to Election_Analysis.txt
     textfile.write("-------------------------\n")  #newline \n
     textfile.write("-------------------------\n")
-    textfile.write("FINANCIAL ANALYSIS" + "\n")
+    textfile.write("ELECTION ANALYSIS" + "\n")
     textfile.write("-------------------------\n")
-    textfile.write("TOTAL MONTHS: " + str(tot_month) + "\n")  
-    textfile.write("TOTAL PROFIT: " + "$" + str(tot_profit) + "\n")
-    textfile.write("CHANGE-AVERAGE: " + "$" + str(int(avg_change_profits)))
+    textfile.write("TOTAL VOTES: " + str(tot_count) + "\n")  
+   
     
     
     
